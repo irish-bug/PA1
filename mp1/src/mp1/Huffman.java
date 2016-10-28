@@ -95,7 +95,7 @@ public class Huffman {
   
   /** Get the frequency of the characters */
   public static int[] getCharacterFrequency(String text) {
-    int[] counts = new int[256]; // 256 ASCII characters
+    int[] counts = new int[256]; // 512 = 2 * 256 ASCII characters
     
     for (int i = 0; i < text.length(); i++)
       counts[(int)text.charAt(i)]++; // Count the character in text

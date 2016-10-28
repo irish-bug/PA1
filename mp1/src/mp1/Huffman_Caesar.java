@@ -1,8 +1,8 @@
 /*
- * Sniffycrypt2000 is a file encryptor/decryptor and compression/decompression utility
+ * Huffman Caesar is a file encryptor/decryptor and compression/decompression utility
  * written for JHU EN.605.421 Foundations of Algorithms
  * Fall 2016 by Shane Rogers
- * Code for Sniffycrypt2000 was adapted from 
+ * Code for Huffman Caesar was adapted from 
  * Java Tutorials Code Sample – FileChooserDemo.java
  * https://docs.oracle.com/javase/tutorial/uiswing/examples/components/FileChooserDemoProject/src/components/FileChooserDemo.java
  * 
@@ -27,13 +27,13 @@ import javax.swing.SwingUtilities;
 
  
 /*
- * Sniffycrypt2000.java uses these files:
+ * Huffman Caesar.java uses these files:
  *   ../images/open_file.gif
  *   ../images/save_file.gif
  *   ../images/lock_file.png
  *   ../images/unlock_file.png
  */
-public class Sniffycrypt2000 extends JPanel
+public class Huffman_Caesar extends JPanel
                              implements ActionListener {
 	
 	//This was added to get rid of a warning.
@@ -56,7 +56,7 @@ public class Sniffycrypt2000 extends JPanel
     ArrayList<String> compressed_contents;
     int file_size;
     
-    public Sniffycrypt2000() {
+    public Huffman_Caesar() {
         super(new BorderLayout());
  
         /*
@@ -69,7 +69,7 @@ public class Sniffycrypt2000 extends JPanel
         text_area.setMargin(new Insets(5,5,5,5));
         text_area.setEditable(false);
         JScrollPane logScrollPane = new JScrollPane(text_area);
-        text_area.append("Welcome to Sniffycrypt 2000!" + newline);
+        text_area.append("Welcome to Huffman Caesar!" + newline);
         text_area.append("Please open the file you'd like to encrypt or decrypt." + newline);
 
  
@@ -128,7 +128,7 @@ public class Sniffycrypt2000 extends JPanel
          * To show it works, it will display the first line of the file. 
          */
         if (e.getSource() == open_button) {
-            int returnVal = file_chooser.showOpenDialog(Sniffycrypt2000.this);
+            int returnVal = file_chooser.showOpenDialog(Huffman_Caesar.this);
  
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 this.open_file = file_chooser.getSelectedFile();
@@ -167,7 +167,7 @@ public class Sniffycrypt2000 extends JPanel
         
         else if ((e.getSource() == save_button) & (this.open_file != null)) 
         {
-            int returnVal = file_chooser.showSaveDialog(Sniffycrypt2000.this);
+            int returnVal = file_chooser.showSaveDialog(Huffman_Caesar.this);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 save_file = file_chooser.getSelectedFile();
                 try{
@@ -274,7 +274,7 @@ public class Sniffycrypt2000 extends JPanel
      */
     
     protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = Sniffycrypt2000.class.getResource(path);
+        java.net.URL imgURL = Huffman_Caesar.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -291,12 +291,12 @@ public class Sniffycrypt2000 extends JPanel
  
         // This creates the window and gives it a label.
         
-    	JFrame frame = new JFrame("Sniffycrypt 2000");
+    	JFrame frame = new JFrame("Huffman Caesar");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //This populates the frame.
         
-        frame.getContentPane().add(new Sniffycrypt2000());
+        frame.getContentPane().add(new Huffman_Caesar());
  
         //Show the GUI.
         

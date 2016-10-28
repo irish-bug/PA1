@@ -54,6 +54,7 @@ public class Huffman_Caesar extends JPanel
     String longstring = "";
     ArrayList<String> compressed_contents;
     ArrayList<String> decompressed_contents;
+    ArrayList<String> cipher_contents;
     int file_size;
 
     
@@ -232,10 +233,15 @@ public class Huffman_Caesar extends JPanel
                 {
                     text_area.append("Save cancelled." + newline);
                 }
-                
+                text_area.append(encrypt_file.getName() + " compressed successfully " + "." + newline);
                 text_area.setCaretPosition(text_area.getDocument().getLength());
                     
                 //encrypt the file
+                
+                Encryptor this_encryptor = new Encryptor(compressed_contents);
+                cipher_contents = this_encryptor.do_cipher();
+                                
+                System.out.println(cipher_contents);
                 
                        
         } 

@@ -211,26 +211,9 @@ public class Huffman_Caesar extends JPanel
                 //compress the file.
                            
                 text_area.append("Compressing: " + encrypt_file.getName() + "." + newline);
-                Huffman huff = new Huffman(longstring);
-                huff.execute_huffman();
-                compressed_contents.clear();
-                for (int i = 0; i < huff.codes.length; i++)
-                {
-                	if (huff.counts[i] == 0)
-                	{
-                		compressed_contents.add("NULL");
-                	}
-                	else 
-                	{
-                    	compressed_contents.add(huff.codes[i]);               		
-                	}
-
-                }
-                compressed_contents.add("END DICTIONARY");
-                for (int i = 0; i < longstring.length(); i++)
-                {
-                	compressed_contents.add(huff.get_code(longstring.charAt(i)));                	
-                }
+                text_area.append(longstring);
+                Compressor this_compressor = new Compressor(this.longstring, compressed_contents);
+                compressed_contents = this_compressor.compress_contents();
 
                 text_area.setCaretPosition(text_area.getDocument().getLength());
                 

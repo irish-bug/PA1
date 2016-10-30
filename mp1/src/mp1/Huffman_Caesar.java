@@ -163,49 +163,6 @@ public class Huffman_Caesar extends JPanel
             text_area.setCaretPosition(text_area.getDocument().getLength());
         
         }         
-        /*
-         * Handle save button action.
-         * Attempts to save file, if it fails it throws an exception.
-         */
-        
-        /*else if ((e.getSource() == save_button) & (this.open_file != null)) 
-        {
-            int returnVal = file_chooser.showSaveDialog(Huffman_Caesar.this);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                save_file = file_chooser.getSelectedFile();
-                try{
-                	BufferedWriter out = new BufferedWriter(new FileWriter(save_file));
-                	
-                	for (String temp : compressed_contents){
-                		out.write(temp);
-                		out.write(newline);
-                	}
-                	out.close();
-                	
-                }
-                catch(Exception z){
-                	System.err.format("Exception occurred trying to save '%s'.", save_file);
-            	    z.printStackTrace();
-                }
-                
-                
-                //save the file.
-                
-                
-                text_area.append("Saving: " + save_file.getName() + "." + newline);
-                text_area.append("Compression ratio is " + (100 * save_file.length()/8)/file_size + "%"+ newline);
-            } else {
-                text_area.append("Save cancelled." + newline);
-            }
-            text_area.setCaretPosition(text_area.getDocument().getLength());
-            
-        } */
-        
-        /*
-         * Handle the encrypt button action
-         * Right now this does nothing, but it will encrypt the file
-         * and hold it for eventual saving. 
-         */
         
         else if ((e.getSource() == encrypt_button) & (this.open_file != null)) {
 
@@ -226,12 +183,12 @@ public class Huffman_Caesar extends JPanel
                     save_file = file_chooser.getSelectedFile();
                     saver = new FileSaver(save_file, returnVal, compressed_contents, text_area, file_size);
                     saver.save_file();
-                    text_area.append("Saving: " + save_file.getName() + "." + newline);
+                    text_area.append("Saving compressed file: " + save_file.getName() + "." + newline);
                     text_area.append("Compression ratio is " + (100 * save_file.length()/8)/file_size + "%"+ newline);
                 }    
                 else 
                 {
-                    text_area.append("Save cancelled." + newline);
+                    text_area.append("Compression cancelled." + newline);
                 }
                 text_area.append(encrypt_file.getName() + " compressed successfully " + "." + newline);
                 text_area.setCaretPosition(text_area.getDocument().getLength());
@@ -242,6 +199,22 @@ public class Huffman_Caesar extends JPanel
                 cipher_contents = this_encryptor.do_cipher();
                                 
                 System.out.println(cipher_contents);
+                
+                //save encrypted file. 
+        		int returnVal2 = file_chooser.showSaveDialog(Huffman_Caesar.this);
+                if (returnVal2 == JFileChooser.APPROVE_OPTION) 
+                {
+                    save_file = file_chooser.getSelectedFile();
+                    saver = new FileSaver(save_file, returnVal2, cipher_contents, text_area, file_size);
+                    saver.save_file();
+                    text_area.append("Saving encrypted file: " + save_file.getName() + "." + newline);        
+                }    
+                else 
+                {
+                    text_area.append("Encryption cancelled." + newline);
+                }
+                text_area.append(encrypt_file.getName() + " encrypted successfully " + "." + newline);
+                text_area.setCaretPosition(text_area.getDocument().getLength());
                 
                        
         } 
@@ -254,11 +227,32 @@ public class Huffman_Caesar extends JPanel
         
         else if ((e.getSource() == decrypt_button) & (this.open_file != null)) {
                 decrypt_file = this.open_file;
+                //decrypt the file
+                
+                Encryptor this_encryptor = new Encryptor(file_contents);
+                cipher_contents = this_encryptor.do_cipher();
+                                
+          
+                //save decrypted file. 
+        		int returnVal2 = file_chooser.showSaveDialog(Huffman_Caesar.this);
+                if (returnVal2 == JFileChooser.APPROVE_OPTION) 
+                {
+                    save_file = file_chooser.getSelectedFile();
+                    saver = new FileSaver(save_file, returnVal2, cipher_contents, text_area, file_size);
+                    saver.save_file();
+                    text_area.append("Saving decrypted file: " + save_file.getName() + "." + newline);        
+                }    
+                else 
+                {
+                    text_area.append("Decryption cancelled." + newline);
+                }
+                text_area.append(decrypt_file.getName() + " decrypted successfully " + "." + newline);
+                text_area.setCaretPosition(text_area.getDocument().getLength());
                 
                 //Decompress the file.
                 
-                text_area.append("Decrypting: " + decrypt_file.getName() + "." + newline);
-                Compressor this_compressor = new Compressor(this.longstring, file_contents);
+                text_area.append("Decompressing: " + decrypt_file.getName() + "." + newline);
+                Compressor this_compressor = new Compressor(this.longstring, cipher_contents);
                 decompressed_contents = this_compressor.decompress_contents();
                 
                 //Save decompressed file.
@@ -271,7 +265,7 @@ public class Huffman_Caesar extends JPanel
                 }    
                 else 
                 {
-                    text_area.append("Save cancelled." + newline);
+                    text_area.append("Decompression cancelled." + newline);
                 }
                 
                 text_area.setCaretPosition(text_area.getDocument().getLength());

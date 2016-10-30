@@ -17,10 +17,7 @@ public class Compressor
 		compressed_contents = compressed;
         longstring = lstring;
         huff = new Huffman(longstring);
-
-        //System.out.println(compressed_contents);
-        //System.out.println(longstring);
-        
+ 
 	}
 	
 	public ArrayList<String> compress_contents()

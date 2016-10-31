@@ -1,6 +1,7 @@
 /*
  * This class was adapted from www.cs.armstrong:
  * Huffman.java http://www.cs.armstrong.edu/liang/intro9e/html/HuffmanCode.html
+ * It takes a string and creates a Huffman Tree for use in compression translation
  */
 
 package mp1;
@@ -51,7 +52,7 @@ public class Huffman {
 	  
   }
   
-  /** Get Huffman codes for the characters 
+  /* Get Huffman codes for the characters 
    * This method is called once after a Huffman tree is built
    */
   public static String[] getCode(Tree.Node root) {
@@ -75,7 +76,7 @@ public class Huffman {
     }
   }
   
-  /** Get a Huffman tree from the codes */  
+  /* Get a Huffman tree from the codes */  
   public static Tree getHuffmanTree(int[] counts) {
     // Create a heap to hold trees
     Heap<Tree> heap = new Heap<Tree>(); // Defined in Listing 24.10

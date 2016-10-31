@@ -45,7 +45,7 @@ public class Huffman_Caesar extends JPanel
     
     /*
      * Create open file and buffered reader variables for opening and reading file.
-     * Also Array list of strings to hold file contents
+     * Also ArrayLists of strings to hold file contents
      */
     
     File open_file = null;
@@ -87,15 +87,12 @@ public class Huffman_Caesar extends JPanel
         
         open_button = new JButton("Open",
                                  createImageIcon("../images/open_file.png"));
-        save_button = new JButton("Save",
-                                 createImageIcon("../images/save_file.png"));
         encrypt_button = new JButton("Compress/Encrypt",
         							createImageIcon("../images/lock_file.png"));
         decrypt_button = new JButton("Decrypt/Decompress",
 				 					createImageIcon("../images/unlock_file.png"));
         
         open_button.addActionListener(this);
-        save_button.addActionListener(this);
         encrypt_button.addActionListener(this);
         decrypt_button.addActionListener(this);        
  
@@ -107,7 +104,6 @@ public class Huffman_Caesar extends JPanel
         buttonPanel.add(open_button);
         buttonPanel.add(encrypt_button);
         buttonPanel.add(decrypt_button);
-        //buttonPanel.add(save_button);
         
         /*
          * Add the buttons and the text section to the panel.
@@ -162,8 +158,14 @@ public class Huffman_Caesar extends JPanel
             }
             text_area.setCaretPosition(text_area.getDocument().getLength());
         
-        }         
+        } 
         
+        /*
+         * Handle encrypt button action.
+         * Compresses contents of open file and asks for a location to save contents.
+         * Next it encrypts those contents and asks for a location to save contents.
+         * It calls Huffman.java, Compressor.java and Encryptor.java
+         */        
         else if ((e.getSource() == encrypt_button) & (this.open_file != null)) {
 
         	encrypt_file = this.open_file;
@@ -220,10 +222,11 @@ public class Huffman_Caesar extends JPanel
         } 
         
         /*
-         * Handle the decrypt button action
-         * Right now this does nothing, but it will decrypt the file
-         * and hold save it. 
-         */
+         * Handle decrypt button action.
+         * Decrypts contents of open file and asks for a location to save contents.
+         * Next it decompresses those contents and asks for a location to save contents.
+         * It calls Huffman.java, Compressor.java and Encryptor.java
+         */ 
         
         else if ((e.getSource() == decrypt_button) & (this.open_file != null)) {
                 decrypt_file = this.open_file;
@@ -267,13 +270,13 @@ public class Huffman_Caesar extends JPanel
                 {
                     text_area.append("Decompression cancelled." + newline);
                 }
-                
+                text_area.append(decrypt_file.getName() + " decompressed successfully " + "." + newline);
                 text_area.setCaretPosition(text_area.getDocument().getLength());
                 
         }
         
         /*
-         * Handle the case where an encrypt, decrypt or save button is chosen
+         * Handle the case where an encrypt or decrypt button is chosen
          * but no file has yet been open. Prompts user to open a file first.
          */
         

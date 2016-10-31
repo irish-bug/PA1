@@ -2,6 +2,12 @@ package mp1;
 
 import java.util.ArrayList;
 
+/*
+ * This class is used by both the Compress/Encrypt and Decrypt/Decompress
+ * Action buttons It takes as a parameter an ArrayList and returns the same type.
+ */
+
+
 public class Encryptor {
 	
 	ArrayList<String> coded_contents = new ArrayList<String>();

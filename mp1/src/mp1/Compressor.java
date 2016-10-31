@@ -2,6 +2,11 @@ package mp1;
 
 import java.util.ArrayList;
 
+/*
+ * This class handles the compression and decompression of the file contents.
+ * It calls Huffman.java to populate a Huffman tree to reference for translation
+ * of each character into its binary equivalent and vice versa.
+ */
 public class Compressor 
 {
 	public ArrayList<String> compressed_contents;

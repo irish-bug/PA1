@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
+/*
+ * This class is used by both the Compress/Encrypt and Decrypt/Decompress
+ * It asks for user input to chose the filename and location to save. 
+ * If it fails, it throws an Exception.
+ */
 public class FileSaver {
 	
 	File save_file;
@@ -29,9 +34,7 @@ public class FileSaver {
 
 	public void save_file()
 	{
-
-
-            try{
+         try{
             	BufferedWriter out = new BufferedWriter(new FileWriter(save_file));
             	
             	for (String temp : compressed_contents){
@@ -41,7 +44,7 @@ public class FileSaver {
             	out.close();
             	
             }
-            catch(Exception z){
+         catch(Exception z){
             	System.err.format("Exception occurred trying to save '%s'.", save_file);
         	    z.printStackTrace();
             }
